@@ -44,7 +44,7 @@ describe('Given I am connected as an Admin', () => {
   })
 
   describe('When I am on Dashboard page and I click on arrow', () => {
-    test('Then, tickets list should be unfolding, and cars should contain first and lastname', async () => {
+    test('Then, tickets list should be unfolding, and cards should contain first and lastname', async () => {
       
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname })
@@ -71,16 +71,16 @@ describe('Given I am connected as an Admin', () => {
       const icon3 = screen.getByTestId('arrow-icon3')
 
       icon1.addEventListener('click', handleShowTickets1)
-      userEvent.click(icon1)
+      fireEvent.click(icon1)
       expect(handleShowTickets1).toHaveBeenCalled()
-      userEvent.click(icon1)
+      //userEvent.click(icon1)
 
       icon2.addEventListener('click', handleShowTickets2)
-      userEvent.click(icon2)
+      fireEvent.click(icon2)
       expect(handleShowTickets2).toHaveBeenCalled()
 
       icon3.addEventListener('click', handleShowTickets3)
-      userEvent.click(icon3)
+      fireEvent.click(icon3)
       expect(handleShowTickets3).toHaveBeenCalled()
 
     })
@@ -104,10 +104,10 @@ describe('Given I am connected as an Admin', () => {
       const handleEditTicket = jest.fn((e) => dashboard.handleEditTicket(e, bills[0], bills))   
       const iconEdit = screen.getByTestId('open-bill47qAXb6fIm2zOKkLzMro')
       iconEdit.addEventListener('click', handleEditTicket)
-      userEvent.click(iconEdit)
+      fireEvent.click(iconEdit)
       expect(handleEditTicket).toHaveBeenCalled()
-      userEvent.click(iconEdit)
-      expect(handleEditTicket).toHaveBeenCalled()
+      // userEvent.click(iconEdit)
+      // expect(handleEditTicket).toHaveBeenCalled()
     })
   })
 
@@ -194,7 +194,7 @@ describe('Given I am connected as Admin and I am on Dashboard page and I clicked
       const handleClickIconEye = jest.fn(dashboard.handleClickIconEye)
       const eye = screen.getByTestId('icon-eye-d')
       eye.addEventListener('click', handleClickIconEye)
-      userEvent.click(eye)
+      fireEvent.click(eye)
       expect(handleClickIconEye).toHaveBeenCalled()
 
       const modale = screen.getByTestId('modaleFileAdmin')

@@ -3,12 +3,7 @@ import MailIcon from "../assets/svg/mail.js"
 import DisconnectIcon from "../assets/svg/disconnect.js"
 
 export default (height) => {
-    // if (typeof window !== 'undefined'){
-    //   console.log ('You are not in the browser')
-    // } else {
-    //   console.log ('You are in the browser')
-    // }
-  
+    
     let user;
     
     user = JSON.parse(localStorage.getItem('user'))

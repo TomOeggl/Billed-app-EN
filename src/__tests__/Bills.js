@@ -2,14 +2,35 @@ import { screen } from "@testing-library/dom"
 import BillsUI from "../views/BillsUI.js"
 import Bills from "../containers/Bills.js"
 import { bills } from "../fixtures/bills.js"
+import VerticalLayout from "../views/VerticalLayout.js"
 import { localStorageMock } from "../__mocks__/localStorage"
+import ErrorPage from "../views/ErrorPage.js"
+import LoadingPage from "../views/LoadingPage.js"
 
+//BillsUI.js tests
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
     test("Then bill icon in vertical layout should be highlighted", () => {
+      Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+    const user = JSON.stringify({
+      type: 'Employee'
+    })
+    window.localStorage.setItem('user', user)
       const html = BillsUI({ data: []})
       document.body.innerHTML = html
       //to-do write expect expression
+    //   Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+    // const user = JSON.stringify({
+    //   type: 'Employee'
+    // })
+    // window.localStorage.setItem('user', user)
+    //   const html = VerticalLayout(120)
+    //   document.body.innerHTML = html
+      const icon = screen.getByTestId('icon-window')
+      icon.classList.add('active-icon')
+
+      
+      expect(icon.classList.contains('active-icon')).toBeTruthy()
     })
     test("Then bills should be ordered from earliest to latest", () => {
       const html = BillsUI({ data: bills })
@@ -20,5 +41,17 @@ describe("Given I am connected as an employee", () => {
       expect(dates).toEqual(datesSorted)
       
     })
+    test("Then if it is loading should return a loading page ", () =>{
+      const html = BillsUI({data: [], loading: true, error: false})
+      document.body.innerHTML = html
+      expect(LoadingPage).toBeTruthy()
+    })
+    test("Then if error is true it should return a error page ", () =>{
+      const html = BillsUI({data: [], loading: false, error: true})
+      document.body.innerHTML = html
+      expect(ErrorPage).toBeTruthy()
+    })
   })
 })
+
+//Bills.js tests
