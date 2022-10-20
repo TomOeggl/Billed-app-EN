@@ -1,4 +1,4 @@
-import { formatDate } from '../app/format.js'
+import { dateIsValid, formatDate } from '../app/format.js'
 import DashboardFormUI from '../views/DashboardFormUI.js'
 import BigBilledIcon from '../assets/svg/big_billed.js'
 import { ROUTES_PATH } from '../constants/routes.js'
@@ -34,6 +34,8 @@ export const card = (bill) => {
   const lastName = firstAndLastNames.includes('.') ?
   firstAndLastNames.split('.')[1] : firstAndLastNames
 
+  if (dateIsValid(bill.date) && (bill.fileName !== null))
+{
   return (`
     <div class='bill-card' id='open-bill${bill.id}' data-testid='open-bill${bill.id}'>
       <div class='bill-card-name-container'>
@@ -49,7 +51,7 @@ export const card = (bill) => {
         <span> ${bill.type} </span>
       </div>
     </div>
-  `)
+  `)}
 }
 
 export const cards = (bills) => {
