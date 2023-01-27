@@ -49,6 +49,8 @@ export default class NewBill {
       fileName: this.fileName,
       status: 'pending'
     }
+    console.log("Handle Submit Event: ")
+    console.log(e.target)
     this.createBill(bill)
     this.onNavigate(ROUTES_PATH['Bills'])
   }
@@ -67,6 +69,6 @@ export default class NewBill {
   }
 }
 
-function getExtension(filename) {
+export const getExtension = (filename) => {
   return filename.split('.').pop()
 }

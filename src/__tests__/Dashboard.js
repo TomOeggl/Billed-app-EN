@@ -103,6 +103,7 @@ describe('Given I am connected as an Admin', () => {
 
       const handleEditTicket = jest.fn((e) => dashboard.handleEditTicket(e, bills[0], bills))   
       const iconEdit = screen.getByTestId('open-bill47qAXb6fIm2zOKkLzMro')
+      console.log(iconEdit, 'Dashboard Test')
       iconEdit.addEventListener('click', handleEditTicket)
       fireEvent.click(iconEdit)
       expect(handleEditTicket).toHaveBeenCalled()
@@ -199,6 +200,8 @@ describe('Given I am connected as Admin and I am on Dashboard page and I clicked
 
       const modale = screen.getByTestId('modaleFileAdmin')
       expect(modale).toBeTruthy()
+
+      
     })
   })
 })
